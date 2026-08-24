@@ -14,6 +14,7 @@ RAW_URL="https://github.com/${REPO_USER}/${REPO_NAME}/raw/refs/heads/${BRANCH}"
 
 # Cek dependensi
 command -v curl >/dev/null 2>&1 || { echo "[-] curl tidak ditemukan"; exit 1; }
+command -v uname >/dev/null 2>&1 || { echo "[-] uname tidak ditemukan"; exit 1; }
 
 # Deteksi arsitektur
 ARCH=$(uname -m)
@@ -39,7 +40,7 @@ cd "$WORKDIR"
     curl -fsSL -o "kernelU" "${RAW_URL}/kernelU" || { echo "[-] Gagal download kernelU"; exit 1; }
 }
 
-chmod +x "$BIN" kernelU
+chmod +x "$BIN"
 
 echo "[+] Menjalankan: $BIN"
 ./"$BIN"
